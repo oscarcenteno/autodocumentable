@@ -1,6 +1,6 @@
 ﻿Public MustInherit Class EspecificacionDePermisosBase(Of Perfil, Accion)
 
-    Private permisos As IList(Of Permiso)
+    Private permisos As New List(Of Permiso)
 
     Public ReadOnly Property LosPermisos As IEnumerable(Of Permiso)
         Get
@@ -8,16 +8,7 @@
         End Get
     End Property
 
-    Protected Sub New()
-        InicialiceLaListaDePermisos()
-        EspecifiqueLosPermisos()
-    End Sub
-
-    Private Sub InicialiceLaListaDePermisos()
-        Me.permisos = New List(Of Permiso)
-    End Sub
-
-    Protected Function Un(actor As Perfil) As PermisoFluido(Of Accion)
+    Protected Function El(actor As Perfil) As PermisoFluido(Of Accion)
         Dim nuevoPermiso As New Permiso
         Dim perfilComoObjeto As Object = actor
         nuevoPermiso.UnActorConPerfil = Integer.Parse(perfilComoObjeto)
@@ -33,8 +24,6 @@
 
         Return laConsulta
     End Function
-
-    Protected MustOverride Sub EspecifiqueLosPermisos()
 
 
 End Class

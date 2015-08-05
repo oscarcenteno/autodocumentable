@@ -2,11 +2,7 @@
 
 Public MustInherit Class EspecificacionDeValidaciones(Of T)
 
-    Private lasReglas As IList(Of ReglaDeValidacion)
-
-    Public Sub New()
-        Me.lasReglas = New List(Of ReglaDeValidacion)
-    End Sub
+    Private lasReglas As New List(Of ReglaDeValidacion)
 
     Protected Function LaPropiedad(Of TProperty)(expresion As Expression(Of Func(Of T, TProperty))) _
         As ConfiguradorDeReglas(Of T, TProperty)

@@ -6,8 +6,8 @@
         Me.elPermiso = elPermiso
     End Sub
 
-    Public Sub Puede(realizarUnaAccion As Accion)
-        Dim accionComoObjeto As Object = realizarUnaAccion
+    Public Sub PuedeRealizarLa(accion As Accion)
+        Dim accionComoObjeto As Object = accion
         elPermiso.PuedeRealizacionLaAccion = Integer.Parse(accionComoObjeto)
     End Sub
 

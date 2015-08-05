@@ -1,23 +1,11 @@
 ﻿Public MustInherit Class MaquinaDeEstadosBase(Of Estado, Accion)
 
-    Private transiciones As IList(Of Transicion(Of Estado, Accion))
+    Private transiciones As New List(Of Transicion(Of Estado, Accion))
     Private elEstadoActual As Estado
 
     Protected Sub New(estadoInicial As Estado)
-        InicialiceElEstadoInicial(estadoInicial)
-        InicialiceLaListaDeTransiciones()
-        EspecifiqueLasTransiciones()
-    End Sub
-
-    Private Sub InicialiceElEstadoInicial(estadoInicial As Estado)
         Me.elEstadoActual = estadoInicial
     End Sub
-
-    Private Sub InicialiceLaListaDeTransiciones()
-        Me.transiciones = New List(Of Transicion(Of Estado, Accion))
-    End Sub
-
-    Protected MustOverride Sub EspecifiqueLasTransiciones()
 
     Protected Function La(nombreDeLaTransicion As Accion) As TransicionFluida(Of Estado, Accion)
         Dim nuevaTransicion As New Transicion(Of Estado, Accion)
