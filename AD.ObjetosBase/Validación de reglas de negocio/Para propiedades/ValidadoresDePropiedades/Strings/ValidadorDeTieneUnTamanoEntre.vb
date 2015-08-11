@@ -11,10 +11,10 @@ Class ValidadorDeTieneUnTamanoEntre
     End Sub
 
     Overrides Function EsValida(contexto As ContextoParaValidarUnaPropiedad) As Boolean
-        Dim laValidacionEsValida As Boolean
+        Dim elTextoEsValido As Boolean
 
         If contexto.ValorDeLaPropiedad Is Nothing Then
-            laValidacionEsValida = False
+            elTextoEsValido = False
         Else
 
             Dim valorComoString As String
@@ -23,13 +23,13 @@ Class ValidadorDeTieneUnTamanoEntre
             elTamano = valorComoString.Length
 
             If elTamano >= tamanoMinimo And elTamano <= tamanoMaximo Then
-                laValidacionEsValida = True
+                elTextoEsValido = True
             Else
-                laValidacionEsValida = False
+                elTextoEsValido = False
             End If
         End If
 
-        Return laValidacionEsValida
+        Return elTextoEsValido
     End Function
 
     Public Overrides ReadOnly Property Descripcion(laRegla As ReglaParaUnaPropiedad) As String

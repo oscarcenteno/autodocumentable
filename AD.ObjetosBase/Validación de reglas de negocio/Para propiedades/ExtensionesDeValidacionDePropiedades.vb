@@ -18,8 +18,8 @@ Public Module ExtensionesDeValidacionDePropiedades
     End Sub
 
     <Extension> _
-    Public Function TieneUnTamanoDe(Of T)(elConfigurador As ConfiguradorDeReglas(Of T, String),
-                                          tamanoExacto As Integer) _
+    Public Function TieneUnTamanoDe(Of T) _
+    (elConfigurador As ConfiguradorDeReglas(Of T, String), tamanoExacto As Integer) _
     As ConfiguradorDeReglas(Of T, String)
 
         elConfigurador.AgregarValidador(New ValidadorDeTieneUnTamanoDe(tamanoExacto))
@@ -27,25 +27,58 @@ Public Module ExtensionesDeValidacionDePropiedades
     End Function
 
     <Extension> _
-    Public Function TieneUnTamanoEntre(Of T)(elConfigurador As ConfiguradorDeReglas(Of T, String),
-                                             tamanoMinimo As Integer, tamanoMaximo As Integer) _
-    As ConfiguradorDeReglas(Of T, String)
+    Public Function TieneUnTamanoEntre(Of T) _
+    (elConfigurador As ConfiguradorDeReglas(Of T, String),
+     tamanoMinimo As Integer,
+     tamanoMaximo As Integer) As ConfiguradorDeReglas(Of T, String)
         elConfigurador.AgregarValidador(New ValidadorDeTieneUnTamanoEntre(tamanoMinimo,
                                                                           tamanoMaximo))
         Return elConfigurador
     End Function
 
     <Extension> _
-    Public Function EsCorreoElectronico(Of T)(elConfigurador As ConfiguradorDeReglas(Of T, String)) _
+    Public Function IniciaCon(Of T) _
+    (elConfigurador As ConfiguradorDeReglas(Of T, String), textoConElQueDebeIniciar As String) _
     As ConfiguradorDeReglas(Of T, String)
+        elConfigurador.AgregarValidador(New ValidadorDeIniciaCon(textoConElQueDebeIniciar))
+        Return elConfigurador
+    End Function
+
+    <Extension> _
+    Public Function EsCorreoElectronico(Of T) _
+    (elConfigurador As ConfiguradorDeReglas(Of T, String)) As ConfiguradorDeReglas(Of T, String)
         elConfigurador.AgregarValidador(New ValidadorDeEsCorreoElectronico())
         Return elConfigurador
     End Function
 
     <Extension> _
-    Public Function EsMayorQue(Of T, TProperty As {IComparable(Of TProperty), IComparable}) _
-    (elConfigurador As ConfiguradorDeReglas(Of T, TProperty),
-     valorPorComparar As TProperty) As ConfiguradorDeReglas(Of T, TProperty)
+    Public Function EsHexagecimal(Of T) _
+    (elConfigurador As ConfiguradorDeReglas(Of T, String)) As ConfiguradorDeReglas(Of T, String)
+        elConfigurador.AgregarValidador(New ValidadorDeEsHexagecimal())
+        Return elConfigurador
+    End Function
+
+    <Extension> _
+    Public Function CumpleConLaExpresionRegular(Of T) _
+    (elConfigurador As ConfiguradorDeReglas(Of T, String), expresionRegular As String) _
+    As ConfiguradorDeReglas(Of T, String)
+        Dim elValidador As ValidadorDeCumpleConLaExpresionRegular
+        elValidador = New ValidadorDeCumpleConLaExpresionRegular(expresionRegular)
+
+        elConfigurador.AgregarValidador(elValidador)
+
+        Return elConfigurador
+    End Function
+
+    <Extension> _
+    Public Function EsMayorQue(Of T,
+                                   TProperty As {
+                                       IComparable(Of TProperty), 
+                                       IComparable
+                                       }
+                                   ) _
+    (elConfigurador As ConfiguradorDeReglas(Of T, TProperty), valorPorComparar As TProperty) _
+    As ConfiguradorDeReglas(Of T, TProperty)
 
         elConfigurador.AgregarValidador(New ValidadorDeEsMayorQue(valorPorComparar))
         Return elConfigurador
@@ -64,7 +97,12 @@ Public Module ExtensionesDeValidacionDePropiedades
     End Function
 
     <Extension> _
-    Public Function EsMenorQue(Of T, TProperty As {IComparable(Of TProperty), IComparable}) _
+    Public Function EsMenorQue(Of T,
+                                   TProperty As {
+                                       IComparable(Of TProperty), 
+                                       IComparable
+                                       }
+                                   ) _
     (elConfigurador As ConfiguradorDeReglas(Of T, TProperty),
      valorPorComparar As TProperty) As ConfiguradorDeReglas(Of T, TProperty)
 
@@ -75,16 +113,24 @@ Public Module ExtensionesDeValidacionDePropiedades
     <Extension> _
     Public Function EsMenorQue(Of T, TProperty) _
     (elConfigurador As ConfiguradorDeReglas(Of T, TProperty),
-     expression As Expression(Of Func(Of T, TProperty))) As ConfiguradorDeReglas(Of T, TProperty)
+     expression As Expression(Of Func(Of T, TProperty))) _
+ As ConfiguradorDeReglas(Of T, TProperty)
 
-        Dim func = expression.Compile()
-        elConfigurador.AgregarValidador(New ValidadorDeEsMenorQue(func.TransformadaANoGenerica(),
-                                                                        expression.GetMember()))
+        Dim laFuncion = expression.Compile()
+        Dim elValidador As ValidadorDeEsMenorQue
+        elValidador = New ValidadorDeEsMenorQue(laFuncion.TransformadaANoGenerica(),
+                                                expression.GetMember())
+        elConfigurador.AgregarValidador(elValidador)
         Return elConfigurador
     End Function
 
     <Extension> _
-    Public Function EsIgualQue(Of T, TProperty As {IComparable(Of TProperty), IComparable}) _
+    Public Function EsIgualQue(Of T,
+                                   TProperty As {
+                                       IComparable(Of TProperty), 
+                                       IComparable
+                                       }
+                                   ) _
     (elConfigurador As ConfiguradorDeReglas(Of T, TProperty),
      valorPorComparar As TProperty) As ConfiguradorDeReglas(Of T, TProperty)
 
@@ -95,40 +141,59 @@ Public Module ExtensionesDeValidacionDePropiedades
     <Extension> _
     Public Function EsIgualQue(Of T, TProperty) _
     (elConfigurador As ConfiguradorDeReglas(Of T, TProperty),
-     expression As Expression(Of Func(Of T, TProperty))) As ConfiguradorDeReglas(Of T, TProperty)
+     expression As Expression(Of Func(Of T, TProperty))) _
+ As ConfiguradorDeReglas(Of T, TProperty)
 
-        Dim func = expression.Compile()
-        elConfigurador.AgregarValidador(New ValidadorDeEsIgualQue(func.TransformadaANoGenerica(),
-                                                                        expression.GetMember()))
+        Dim laFuncion = expression.Compile()
+        Dim elValidador
+        elValidador = New ValidadorDeEsIgualQue(laFuncion.TransformadaANoGenerica(),
+                                                expression.GetMember())
+        elConfigurador.AgregarValidador(elValidador)
         Return elConfigurador
     End Function
 
     <Extension> _
-    Public Function EsIgualOMayorQue(Of T, TProperty As {IComparable(Of TProperty), IComparable}) _
+    Public Function EsIgualOMayorQue(Of T,
+                                         TProperty As {
+                                             IComparable(Of TProperty), 
+                                             IComparable
+                                             }
+                                         ) _
     (elConfigurador As ConfiguradorDeReglas(Of T, TProperty),
-     valorPorComparar As TProperty) As ConfiguradorDeReglas(Of T, TProperty)
-
-        elConfigurador.AgregarValidador(New ValidadorDeEsIgualOMayorQue(valorPorComparar))
+     valorPorComparar As TProperty) _
+    As ConfiguradorDeReglas(Of T, TProperty)
+        Dim elValidador As ValidadorDeEsIgualOMayorQue
+        elValidador = New ValidadorDeEsIgualOMayorQue(valorPorComparar)
+        elConfigurador.AgregarValidador(elValidador)
         Return elConfigurador
     End Function
 
     <Extension> _
     Public Function EsIgualOMayorQue(Of T, TProperty) _
     (elConfigurador As ConfiguradorDeReglas(Of T, TProperty),
-     expression As Expression(Of Func(Of T, TProperty))) As ConfiguradorDeReglas(Of T, TProperty)
+     expression As Expression(Of Func(Of T, TProperty))) _
+ As ConfiguradorDeReglas(Of T, TProperty)
 
-        Dim func = expression.Compile()
+        Dim laFuncion = expression.Compile()
         elConfigurador.AgregarValidador(
-            New ValidadorDeEsIgualOMayorQue(func.TransformadaANoGenerica(),
+            New ValidadorDeEsIgualOMayorQue(laFuncion.TransformadaANoGenerica(),
                                             expression.GetMember()))
         Return elConfigurador
     End Function
 
     <Extension> _
-    Public Function EsIgualOMenorQue(Of T, TProperty As {IComparable(Of TProperty), IComparable}) _
-    (elConfigurador As ConfiguradorDeReglas(Of T, TProperty), valorPorComparar As TProperty) _
-    As ConfiguradorDeReglas(Of T, TProperty)
-        elConfigurador.AgregarValidador(New ValidadorDeEsIgualOMenorQue(valorPorComparar))
+    Public Function EsIgualOMenorQue(Of T,
+                                   TProperty As {
+                                       IComparable(Of TProperty), 
+                                       IComparable
+                                       }
+                                   ) _
+    (elConfigurador As ConfiguradorDeReglas(Of T, TProperty),
+     valorPorComparar As TProperty) As ConfiguradorDeReglas(Of T, TProperty)
+
+        Dim elValidador As ValidadorDeEsIgualOMenorQue
+        elValidador = New ValidadorDeEsIgualOMenorQue(valorPorComparar)
+        elConfigurador.AgregarValidador(elValidador)
         Return elConfigurador
     End Function
 

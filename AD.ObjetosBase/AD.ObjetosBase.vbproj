@@ -89,6 +89,9 @@
     <Compile Include="Validación de reglas de negocio\Para predicados\ExtensionesDeValidacionDePredicados.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ContextoParaValidarUnaPropiedad.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ExtensionesDeValidacionDePropiedades.vb" />
+    <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Strings\ValidadorDeEsHexagecimal.vb" />
+    <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Strings\ValidadorDeCumpleConLaExpresionRegular.vb" />
+    <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Strings\ValidadorDeIniciaCon.vb" />
     <Compile Include="Validación de reglas de negocio\ReglaDeValidacion.vb" />
     <Compile Include="Validación de reglas de negocio\Para predicados\ReglaParaUnaExpresion.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ReglaParaUnaPropiedad.vb" />
@@ -97,7 +100,7 @@
     <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Comparables\ValidadorDeEsIgualOMenorQue.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Comparables\ValidadorDeEsMayorQue.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Comparables\ValidadorDeEsIgualQue.vb" />
-    <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Objects\ValidadorDeEsCorreoElectronico.vb" />
+    <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Strings\ValidadorDeEsCorreoElectronico.vb" />
     <Compile Include="Validación de reglas de negocio\Para predicados\ValidadorDeSeCumple.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Comparables\Comparador.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Comparables\ValidadorDeEsIgualOMayorQue.vb" />

@@ -1,11 +1,11 @@
 ﻿
-Class ValidadorDeTieneUnTamanoDe
+Class ValidadorDeIniciaCon
     Inherits ValidadorDePropiedad
 
-    Private tamanoExacto As Integer
+    Private textoConQueDebeIniciar As String
 
-    Public Sub New(tamanoExacto As Integer)
-        Me.tamanoExacto = tamanoExacto
+    Public Sub New(textoConQueDebeIniciar As Integer)
+        Me.textoConQueDebeIniciar = textoConQueDebeIniciar
     End Sub
 
     Overrides Function EsValida(contexto As ContextoParaValidarUnaPropiedad) As Boolean
@@ -17,9 +17,9 @@ Class ValidadorDeTieneUnTamanoDe
 
             Dim elValorComoObjeto As Object = contexto.ValorDeLaPropiedad
             Dim valorComoString As String = elValorComoObjeto.ToString
-            Dim elTamano As Integer = valorComoString.Length
+            Dim iniciaConLoEsperado = valorComoString.StartsWith(textoConQueDebeIniciar)
 
-            If elTamano = tamanoExacto Then
+            If iniciaConLoEsperado Then
                 elTextoEsValido = True
             Else
                 elTextoEsValido = False
@@ -32,8 +32,8 @@ Class ValidadorDeTieneUnTamanoDe
     Public Overrides ReadOnly Property Descripcion(laRegla As ReglaParaUnaPropiedad) As String
         Get
             Dim laPlantilla As String
-            laPlantilla = "'{0}' debe tener un tamaño de exactamente {1} caracteres."
-            Return String.Format(laPlantilla, laRegla.NombreDeLaPropiedad, Me.tamanoExacto)
+            laPlantilla = "'{0}' debe iniciar con este texto '{1}'."
+            Return String.Format(laPlantilla, laRegla.NombreDeLaPropiedad, Me.textoConQueDebeIniciar)
         End Get
     End Property
 End Class
