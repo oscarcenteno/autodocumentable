@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BAAD8712-5FDF-4478-B35B-AB966DB5B780}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>AD.ObjetosBase.UnitTests</RootNamespace>
-    <AssemblyName>AD.ObjetosBase.UnitTests</AssemblyName>
+    <RootNamespace>Autodocumentable.UnitTests</RootNamespace>
+    <AssemblyName>Autodocumentable.UnitTests</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -23,7 +23,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>AD.ObjetosBase.UnitTests.xml</DocumentationFile>
+    <DocumentationFile>Autodocumentable.UnitTests.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +32,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>AD.ObjetosBase.UnitTests.xml</DocumentationFile>
+    <DocumentationFile>Autodocumentable.UnitTests.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -119,6 +119,12 @@
   <ItemGroup>
     <Folder Include="EspecificacionDeValidaciones\" />
     <Folder Include="ResultadoDeLaValidacion\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Autodocumentable\Autodocumentable.vbproj">
+      <Project>{e2a92c6a-4696-46c3-b22d-f4e270ac3e9b}</Project>
+      <Name>Autodocumentable</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
