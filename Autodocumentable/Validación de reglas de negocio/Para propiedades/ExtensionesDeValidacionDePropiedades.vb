@@ -67,6 +67,24 @@ Public Module ExtensionesDeValidacionDePropiedades
     End Function
 
     <Extension> _
+    Public Function EsAlfanumerica(Of T) _
+        (elConfigurador As ConfiguradorDeReglas(Of T, String)) _
+        As ConfiguradorDeReglas(Of T, String)
+
+        elConfigurador.AgregarValidador(New ValidadorDeEsAlfanumerica())
+        Return elConfigurador
+    End Function
+
+    <Extension> _
+    Public Function ContieneSoloDigitos(Of T) _
+        (elConfigurador As ConfiguradorDeReglas(Of T, String)) _
+        As ConfiguradorDeReglas(Of T, String)
+
+        elConfigurador.AgregarValidador(New ValidadorDeContieneSoloDigitos())
+        Return elConfigurador
+    End Function
+
+    <Extension> _
     Public Function CumpleConLaExpresionRegular(Of T) _
         (elConfigurador As ConfiguradorDeReglas(Of T, String), expresionRegular As String) _
         As ConfiguradorDeReglas(Of T, String)

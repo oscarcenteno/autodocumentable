@@ -89,6 +89,8 @@
     <Compile Include="Validación de reglas de negocio\Para predicados\ExtensionesDeValidacionDePredicados.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ContextoDeUnaPropiedad.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ExtensionesDeValidacionDePropiedades.vb" />
+    <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Strings\ValidadorDeContieneSoloDigitos.vb" />
+    <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Strings\ValidadorDeEsAlfanumerica.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Strings\ValidadorDeEsHexagecimal.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Strings\ValidadorDeCumpleConLaExpresionRegular.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Strings\ValidadorDeIniciaCon.vb" />

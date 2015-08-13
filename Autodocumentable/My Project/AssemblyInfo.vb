@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Bccr.Framework.Negocio")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Bccr.Framework.Negocio")> 
-<Assembly: AssemblyCopyright("Copyright ©  2015")> 
+<Assembly: AssemblyTitle("Autodocumentable")> 
+<Assembly: AssemblyDescription("Base para sistemas que son su propia documentación.")> 
+<Assembly: AssemblyCompany("Oscar Centeno Rivera")> 
+<Assembly: AssemblyProduct("Autodocumentable")> 
+<Assembly: AssemblyCopyright("Copyright ©  2016")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
