@@ -6,15 +6,29 @@ Public Class ReglaParaUnaPropiedad
     Implements ReglaDeValidacion
 
     Private laFuncionDeLaPropiedad As Func(Of Object, Object)
+    Private laExpresion As LambdaExpression
+    Private elMiembro As MemberInfo
+    Private elTipoDeLaPropiedad As Type
+    Private elTipoDeLaClase As Type
+    Private losValidadores As IList(Of ValidadorDePropiedad)
+
+    Public Sub New(elMiembro As MemberInfo, laFuncionDeLaPropiedad As Func(Of Object, Object),
+                   laExpresion As LambdaExpression, elTipoDeLaPropiedad As Type, _
+                   elTipoDeLaClase As Type)
+        Me.elMiembro = elMiembro
+        Me.laFuncionDeLaPropiedad = laFuncionDeLaPropiedad
+        Me.laExpresion = laExpresion
+        Me.elTipoDeLaPropiedad = elTipoDeLaPropiedad
+        Me.elTipoDeLaClase = elTipoDeLaClase
+        Me.losValidadores = New List(Of ValidadorDePropiedad)
+    End Sub
+
+
     Public ReadOnly Property FunctionDeLaPropiedad As Func(Of Object, Object)
         Get
             Return Me.laFuncionDeLaPropiedad
         End Get
     End Property
-    Private laExpresion As LambdaExpression
-    Private elMiembro As MemberInfo
-    Private elTipoDeLaPropiedad As Type
-    Private elTipoDeLaClase As Type
 
     Public ReadOnly Property NombreDeLaPropiedad As String
         Get
@@ -27,19 +41,6 @@ Public Class ReglaParaUnaPropiedad
             Return elNombreEnPascalCase
         End Get
     End Property
-
-    Private losValidadores As IList(Of ValidadorDePropiedad)
-    Public Sub New(elMiembro As MemberInfo, laFuncionDeLaPropiedad As Func(Of Object, Object),
-                   laExpresion As LambdaExpression, elTipoDeLaPropiedad As Type, _
-                   elTipoDeLaClase As Type)
-        Me.elMiembro = elMiembro
-        Me.laFuncionDeLaPropiedad = laFuncionDeLaPropiedad
-        Me.laExpresion = laExpresion
-        Me.elTipoDeLaPropiedad = elTipoDeLaPropiedad
-        Me.elTipoDeLaClase = elTipoDeLaClase
-        Me.losValidadores = New List(Of ValidadorDePropiedad)
-    End Sub
-
 
     ReadOnly Property Descripciones As IEnumerable(Of String) _
         Implements ReglaDeValidacion.Descripciones
