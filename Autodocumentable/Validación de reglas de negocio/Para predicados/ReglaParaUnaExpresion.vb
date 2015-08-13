@@ -19,9 +19,11 @@ Public Class ReglaParaUnaExpresion
     Shared Function Cree(Of T)(laExpresion As Expression(Of Func(Of T, Boolean))) _
         As ReglaParaUnaExpresion
         Dim compiled = laExpresion.Compile()
+        Dim elTipo As Type
+        elTipo = GetType(T)
         Dim laRegla As New ReglaParaUnaExpresion(compiled.TransformadaANoGenerica,
                                                  laExpresion,
-                                                 GetType(T))
+                                                 elTipo)
         Return laRegla
     End Function
 

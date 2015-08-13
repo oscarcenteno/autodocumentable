@@ -17,7 +17,7 @@ Class ValidadorDeCumpleConLaExpresionRegular
         End Get
     End Property
 
-    Public Overrides Function EsValida(contexto As ContextoParaValidarUnaPropiedad) As Boolean
+    Public Overrides Function EsValida(contexto As ContextoDeUnaPropiedad) As Boolean
         Dim elTextoEsValido As Boolean
 
         Dim valorComoString As String

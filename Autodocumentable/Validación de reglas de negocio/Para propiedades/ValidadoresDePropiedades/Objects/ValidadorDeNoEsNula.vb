@@ -2,7 +2,7 @@
 Class ValidadorDeNoEsNula
     Inherits ValidadorDePropiedad
 
-    Overrides Function EsValida(contexto As ContextoParaValidarUnaPropiedad) As Boolean
+    Overrides Function EsValida(contexto As ContextoDeUnaPropiedad) As Boolean
         Dim laValidacionEsValida As Boolean
 
         If contexto.ValorDeLaPropiedad Is Nothing Then

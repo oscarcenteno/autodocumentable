@@ -62,7 +62,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actores y casos de uso\ConsultaSobreUnPermisoFluida.vb" />
+    <Compile Include="Actores y casos de uso\ConsultaSobreUnPermiso.vb" />
     <Compile Include="Actores y casos de uso\PermisoFluido.vb" />
     <Compile Include="Diagramas de estados\TransicionFluida.vb" />
     <Compile Include="Extensiones.vb" />
@@ -87,7 +87,7 @@
     <Compile Include="Diagramas de estados\Transicion.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ConfiguradorDeReglas.vb" />
     <Compile Include="Validación de reglas de negocio\Para predicados\ExtensionesDeValidacionDePredicados.vb" />
-    <Compile Include="Validación de reglas de negocio\Para propiedades\ContextoParaValidarUnaPropiedad.vb" />
+    <Compile Include="Validación de reglas de negocio\Para propiedades\ContextoDeUnaPropiedad.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ExtensionesDeValidacionDePropiedades.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Strings\ValidadorDeEsHexagecimal.vb" />
     <Compile Include="Validación de reglas de negocio\Para propiedades\ValidadoresDePropiedades\Strings\ValidadorDeCumpleConLaExpresionRegular.vb" />

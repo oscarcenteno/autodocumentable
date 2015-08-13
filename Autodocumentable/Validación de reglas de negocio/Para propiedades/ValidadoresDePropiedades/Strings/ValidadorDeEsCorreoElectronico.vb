@@ -4,7 +4,7 @@ Class ValidadorDeEsCorreoElectronico
     Inherits ValidadorDePropiedad
 
     ' Email regex from http://hexillion.com/samples/#Regex
-    Overrides Function EsValida(contexto As ContextoParaValidarUnaPropiedad) As Boolean
+    Overrides Function EsValida(contexto As ContextoDeUnaPropiedad) As Boolean
         Dim elTextoEsValido As Boolean
 
         Dim expression As String

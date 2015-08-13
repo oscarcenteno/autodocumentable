@@ -18,7 +18,7 @@ Class ValidadorDeEsIgualQue
         Me.elMiembroParaComparar = elMiembroParaComparar
     End Sub
 
-    Public Overrides Function EsValida(contexto As ContextoParaValidarUnaPropiedad) As Boolean
+    Public Overrides Function EsValida(contexto As ContextoDeUnaPropiedad) As Boolean
         Dim esMayorQue As Boolean
         If contexto.ValorDeLaPropiedad Is Nothing Then
             esMayorQue = False
@@ -35,7 +35,7 @@ Class ValidadorDeEsIgualQue
 
     End Function
 
-    Private Function ObtengaValorParaComparar(contexto As ContextoParaValidarUnaPropiedad) As Object
+    Private Function ObtengaValorParaComparar(contexto As ContextoDeUnaPropiedad) As Object
         If Me.laFuncionDelValorParaComparar IsNot Nothing Then
             Return laFuncionDelValorParaComparar(contexto.Instancia)
         End If

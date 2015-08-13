@@ -4,12 +4,13 @@ Imports System.Linq.Expressions
 Public Module ExtensionesDeValidacionDePredicados
 
     <Extension> _
-    Public Function SeCumple(Of T, TProperty)(elConfigurador As ConfiguradorDeReglas(Of T, Boolean)) _
-    As ConfiguradorDeReglas(Of T, Boolean)
+    Public Function SeCumple(Of T, TProperty) _
+        (elConfigurador As ConfiguradorDeReglas(Of T, Boolean)) _
+        As ConfiguradorDeReglas(Of T, Boolean)
 
-        elConfigurador.AgregarValidador(New ValidadorDeSeCumple())
+        Dim elValidador As New ValidadorDeSeCumple
+        elConfigurador.AgregarValidador(elValidador)
         Return elConfigurador
-
     End Function
 
 End Module

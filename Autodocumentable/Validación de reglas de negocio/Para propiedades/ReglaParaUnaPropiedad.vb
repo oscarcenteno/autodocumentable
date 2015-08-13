@@ -68,7 +68,7 @@ Public Class ReglaParaUnaPropiedad
 
     Function Valide(laInstancia As Object) As IEnumerable(Of String) _
         Implements ReglaDeValidacion.Valide
-        Dim elContexto As New ContextoParaValidarUnaPropiedad(laInstancia, Me)
+        Dim elContexto As New ContextoDeUnaPropiedad(laInstancia, Me)
 
         Dim mensajesDeError As New List(Of String)
         For Each unValidador In losValidadores

@@ -2,9 +2,9 @@
 
     Public MustOverride ReadOnly Property Descripcion(laRegla As ReglaParaUnaPropiedad) As String
 
-    Public MustOverride Function EsValida(contexto As ContextoParaValidarUnaPropiedad) As Boolean
+    Public MustOverride Function EsValida(contexto As ContextoDeUnaPropiedad) As Boolean
 
-    Public Function Valide(contexto As ContextoParaValidarUnaPropiedad) As String
+    Public Function Valide(contexto As ContextoDeUnaPropiedad) As String
         If EsValida(contexto) Then
             Return String.Empty
         Else

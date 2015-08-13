@@ -10,7 +10,7 @@ Class ValidadorDeSeCumple
         End Get
     End Property
 
-    Public Overrides Function EsValida(contexto As ContextoParaValidarUnaPropiedad) As Boolean
-        Return contexto.ValorDeLaPropiedad
+    Public Overrides Function EsValida(elContexto As ContextoDeUnaPropiedad) As Boolean
+        Return elContexto.ValorDeLaPropiedad
     End Function
 End Class

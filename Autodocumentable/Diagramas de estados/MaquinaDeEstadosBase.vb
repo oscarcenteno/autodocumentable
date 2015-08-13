@@ -28,7 +28,7 @@
         sePermite = False
 
         Dim transicionEncontrada As Transicion(Of Estado, Accion)
-        transicionEncontrada = EncuentreAccionSobreEstadoOrigen(accion, Me.elEstadoActual)
+        transicionEncontrada = EncuentreLaAccionSobreUnEstado(accion, elEstadoActual)
 
         Dim laTransicionExiste As Boolean
         laTransicionExiste = transicionEncontrada IsNot Nothing
@@ -43,8 +43,8 @@
     Public Sub ApliqueLa(accion As Accion)
         If SePermiteLa(accion) Then
             Dim laAccionPorAplicar As Transicion(Of Estado, Accion)
-            laAccionPorAplicar = EncuentreAccionSobreEstadoOrigen(accion, Me.elEstadoActual)
-            Me.elEstadoActual = laAccionPorAplicar.EstadoDestino
+            laAccionPorAplicar = EncuentreLaAccionSobreUnEstado(accion, elEstadoActual)
+            elEstadoActual = laAccionPorAplicar.EstadoDestino
         Else
             Dim plantillaDelError As String
             plantillaDelError = "La acción {0} no se permite sobre el estado {1}"
@@ -56,17 +56,23 @@
         End If
     End Sub
 
-    Private Function EncuentreAccionSobreEstadoOrigen(accion As Accion, estadoOrigen As Estado) As Transicion(Of Estado, Accion)
-        Dim transicionEncontrada As Transicion(Of Estado, Accion) = Nothing
+    Private Function EncuentreLaAccionSobreUnEstado(laAccion As Accion,
+                                                      elEstado As Estado) _
+                                                  As Transicion(Of Estado, Accion)
+        Dim latransicionEncontrada As Transicion(Of Estado, Accion) = Nothing
 
-        For Each t In transiciones
-            If t.Nombre.ToString.Equals(accion.ToString) _
-                And t.EstadoOrigen.ToString.Equals(estadoOrigen.ToString) Then
-                transicionEncontrada = t
+        For Each unaTransicion In transiciones
+            Dim laAccionEsIgual As Boolean
+            laAccionEsIgual = unaTransicion.Nombre.ToString.Equals(laAccion.ToString)
+            Dim elEstadoEsIgual As Boolean
+            elEstadoEsIgual = unaTransicion.EstadoOrigen.ToString.Equals(elEstado.ToString)
+
+            If laAccionEsIgual And elEstadoEsIgual Then
+                latransicionEncontrada = unaTransicion
             End If
         Next
 
-        Return transicionEncontrada
+        Return latransicionEncontrada
     End Function
 
 End Class

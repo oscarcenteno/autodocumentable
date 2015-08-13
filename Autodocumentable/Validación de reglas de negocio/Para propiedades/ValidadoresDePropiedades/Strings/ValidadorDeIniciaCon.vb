@@ -8,7 +8,7 @@ Class ValidadorDeIniciaCon
         Me.textoConQueDebeIniciar = textoConQueDebeIniciar
     End Sub
 
-    Overrides Function EsValida(contexto As ContextoParaValidarUnaPropiedad) As Boolean
+    Overrides Function EsValida(contexto As ContextoDeUnaPropiedad) As Boolean
         Dim elTextoEsValido As Boolean
 
         If contexto.ValorDeLaPropiedad Is Nothing Then

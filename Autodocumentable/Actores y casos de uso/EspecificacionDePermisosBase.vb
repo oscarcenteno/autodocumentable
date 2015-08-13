@@ -18,8 +18,8 @@
         Return elPermisoFluido
     End Function
 
-    Public Function SePermiteLa(accion As Accion) As ConsultaSobreUnPermisoFluida(Of Perfil, Accion)
-        Dim laConsulta As New ConsultaSobreUnPermisoFluida(Of Perfil, Accion)(Me)
+    Public Function SePermiteLa(accion As Accion) As ConsultaSobreUnPermiso(Of Perfil, Accion)
+        Dim laConsulta As New ConsultaSobreUnPermiso(Of Perfil, Accion)(Me)
         laConsulta.LaAccion = accion
 
         Return laConsulta

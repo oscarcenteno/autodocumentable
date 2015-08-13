@@ -6,8 +6,8 @@
         Me.laTransicion = laTransicion
     End Sub
 
-    Public Function VaDesdeEl(estadoOrigen As Estado) As TransicionFluida(Of Estado, Accion)
-        laTransicion.EstadoOrigen = estadoOrigen
+    Public Function VaDesdeEl(elEstado As Estado) As TransicionFluida(Of Estado, Accion)
+        laTransicion.EstadoOrigen = elEstado
         Return Me
     End Function
 
