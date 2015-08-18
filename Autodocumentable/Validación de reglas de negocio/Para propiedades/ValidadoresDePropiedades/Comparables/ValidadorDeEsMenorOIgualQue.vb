@@ -46,7 +46,7 @@ Class ValidadorDeEsMenorOIgualQue
     Public Overloads Overrides ReadOnly Property Descripcion(laRegla As ReglaDePropiedad) As String
         Get
             Dim laPlantilla As String
-            laPlantilla = "'{0}' debe ser igual o menor que {1}."
+            laPlantilla = "'{0}' debe ser menor o igual que {1}."
 
             Dim laDescripcion As String
 

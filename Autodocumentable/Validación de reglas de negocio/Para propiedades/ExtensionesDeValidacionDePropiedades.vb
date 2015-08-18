@@ -19,7 +19,7 @@ Public Module ExtensionesDeValidacionDePropiedades
     End Sub
 
     <Extension>
-    Public Function MideEntre(Of T) _
+    Public Function TieneUnTamanoDe(Of T) _
         (elConfigurador As ConfiguradorDeReglas(Of T, String), tamanoExacto As Integer) _
         As ConfiguradorDeReglas(Of T, String)
 
