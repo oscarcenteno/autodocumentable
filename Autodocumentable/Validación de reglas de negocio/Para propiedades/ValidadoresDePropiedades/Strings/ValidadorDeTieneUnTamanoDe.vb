@@ -29,7 +29,7 @@ Class ValidadorDeTieneUnTamanoDe
         Return elTextoEsValido
     End Function
 
-    Public Overrides ReadOnly Property Descripcion(laRegla As ReglaParaUnaPropiedad) As String
+    Public Overrides ReadOnly Property Descripcion(laRegla As ReglaDePropiedad) As String
         Get
             Dim laPlantilla As String
             laPlantilla = "'{0}' debe tener un tamaño de exactamente {1} caracteres."

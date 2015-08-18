@@ -7,12 +7,12 @@
         Me.elEstadoActual = estadoInicial
     End Sub
 
-    Protected Function La(nombreDeLaTransicion As Accion) As TransicionFluida(Of Estado, Accion)
-        Dim nuevaTransicion As New Transicion(Of Estado, Accion)
-        nuevaTransicion.Nombre = nombreDeLaTransicion
-        transiciones.Add(nuevaTransicion)
+    Protected Function La(laTransicion As Accion) As TransicionFluida(Of Estado, Accion)
+        Dim laNuevaTransicion As New Transicion(Of Estado, Accion)
+        laNuevaTransicion.Nombre = laTransicion
+        transiciones.Add(laNuevaTransicion)
 
-        Dim laTransicionFluida As New TransicionFluida(Of Estado, Accion)(nuevaTransicion)
+        Dim laTransicionFluida As New TransicionFluida(Of Estado, Accion)(laNuevaTransicion)
 
         Return laTransicionFluida
     End Function
@@ -57,7 +57,7 @@
     End Sub
 
     Private Function EncuentreLaAccionSobreUnEstado(laAccion As Accion,
-                                                      elEstado As Estado) _
+                                                    elEstado As Estado) _
                                                   As Transicion(Of Estado, Accion)
         Dim latransicionEncontrada As Transicion(Of Estado, Accion) = Nothing
 

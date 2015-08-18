@@ -29,7 +29,7 @@ Class ValidadorDeIniciaCon
         Return elTextoEsValido
     End Function
 
-    Public Overrides ReadOnly Property Descripcion(laRegla As ReglaParaUnaPropiedad) As String
+    Public Overrides ReadOnly Property Descripcion(laRegla As ReglaDePropiedad) As String
         Get
             Dim laPlantilla As String
             laPlantilla = "'{0}' debe iniciar con este texto '{1}'."

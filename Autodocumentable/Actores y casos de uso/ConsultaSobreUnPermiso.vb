@@ -7,11 +7,11 @@
 
     Public Property LaAccion As Accion
 
-    Public Function AUnActorConEstos(perfiles As Perfil) As Boolean
+    Public Function A(losPerfiles As Perfil) As Boolean
 
         Dim sePermite As Boolean = False
         Dim permisoEncontrado As Permiso
-        permisoEncontrado = EncuentreUnaAccionParaLosPerfiles(LaAccion, perfiles)
+        permisoEncontrado = EncuentreUnaAccionParaLosPerfiles(LaAccion, losPerfiles)
 
         If permisoEncontrado IsNot Nothing Then
             sePermite = True

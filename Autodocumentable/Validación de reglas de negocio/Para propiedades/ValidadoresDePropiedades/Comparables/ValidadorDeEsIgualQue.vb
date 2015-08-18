@@ -11,7 +11,6 @@ Class ValidadorDeEsIgualQue
         Me.valorPorComparar = valorPorComparar
     End Sub
 
-    ' TODO: Revisar si es necesario el comparer como 3er parametro
     Public Sub New(laFuncionDelValorParaComparar As Func(Of Object, Object),
                    elMiembroParaComparar As MemberInfo)
         Me.laFuncionDelValorParaComparar = laFuncionDelValorParaComparar
@@ -44,7 +43,7 @@ Class ValidadorDeEsIgualQue
     End Function
 
 
-    Public Overloads Overrides ReadOnly Property Descripcion(laRegla As ReglaParaUnaPropiedad) As String
+    Public Overloads Overrides ReadOnly Property Descripcion(laRegla As ReglaDePropiedad) As String
         Get
             Dim laPlantilla As String
             laPlantilla = "'{0}' debe ser igual que {1}."

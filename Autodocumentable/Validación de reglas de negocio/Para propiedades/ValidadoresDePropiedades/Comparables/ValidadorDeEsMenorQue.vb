@@ -11,7 +11,6 @@ Class ValidadorDeEsMenorQue
         Me.valorPorComparar = valorPorComparar
     End Sub
 
-    ' TODO: Revisar si es necesario el comparer como 3er parametro
     Public Sub New(laFuncionDelValorParaComparar As Func(Of Object, Object),
                    elMiembroParaComparar As MemberInfo)
         Me.laFuncionDelValorParaComparar = laFuncionDelValorParaComparar
@@ -49,7 +48,7 @@ Class ValidadorDeEsMenorQue
     End Function
 
 
-    Public Overloads Overrides ReadOnly Property Descripcion(laRegla As ReglaParaUnaPropiedad) _
+    Public Overloads Overrides ReadOnly Property Descripcion(laRegla As ReglaDePropiedad) _
         As String
         Get
             Dim laPlantilla As String

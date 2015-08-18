@@ -1,6 +1,6 @@
 ﻿Public MustInherit Class ValidadorDePropiedad
 
-    Public MustOverride ReadOnly Property Descripcion(laRegla As ReglaParaUnaPropiedad) As String
+    Public MustOverride ReadOnly Property Descripcion(laRegla As ReglaDePropiedad) As String
 
     Public MustOverride Function EsValida(contexto As ContextoDeUnaPropiedad) As Boolean
 

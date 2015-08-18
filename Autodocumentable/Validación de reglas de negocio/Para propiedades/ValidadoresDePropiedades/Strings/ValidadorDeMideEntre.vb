@@ -1,5 +1,5 @@
 ﻿
-Class ValidadorDeTieneUnTamanoEntre
+Class ValidadorDeMideEntre
     Inherits ValidadorDePropiedad
 
     Private tamanoMinimo As Integer
@@ -32,7 +32,7 @@ Class ValidadorDeTieneUnTamanoEntre
         Return elTextoEsValido
     End Function
 
-    Public Overrides ReadOnly Property Descripcion(laRegla As ReglaParaUnaPropiedad) As String
+    Public Overrides ReadOnly Property Descripcion(laRegla As ReglaDePropiedad) As String
         Get
             Dim laPlantilla As String
             laPlantilla = "'{0}' debe tener un tamaño entre {1} y {2} caracteres, inclusive."

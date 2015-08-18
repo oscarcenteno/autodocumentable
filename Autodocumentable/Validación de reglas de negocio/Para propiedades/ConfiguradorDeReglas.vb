@@ -1,8 +1,8 @@
 ﻿Public Class ConfiguradorDeReglas(Of T, TProperty)
 
-    Private laRegla As ReglaParaUnaPropiedad
+    Private laRegla As ReglaDePropiedad
 
-    Friend Sub New(laRegla As ReglaParaUnaPropiedad)
+    Friend Sub New(laRegla As ReglaDePropiedad)
         Me.laRegla = laRegla
     End Sub
 

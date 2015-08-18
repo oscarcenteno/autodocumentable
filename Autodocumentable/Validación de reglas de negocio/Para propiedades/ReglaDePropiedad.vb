@@ -2,7 +2,7 @@
 Imports System.Linq.Expressions
 Imports System.Reflection
 
-Public Class ReglaParaUnaPropiedad
+Public Class ReglaDePropiedad
     Implements ReglaDeValidacion
 
     Private laFuncionDeLaPropiedad As Func(Of Object, Object)
@@ -12,11 +12,13 @@ Public Class ReglaParaUnaPropiedad
     Private elTipoDeLaClase As Type
     Private losValidadores As IList(Of ValidadorDePropiedad)
 
-    Public Sub New(elMiembro As MemberInfo, laFuncionDeLaPropiedad As Func(Of Object, Object),
-                   laExpresion As LambdaExpression, elTipoDeLaPropiedad As Type, _
+    Public Sub New(elMiembro As MemberInfo,
+                   laFuncion As Func(Of Object, Object),
+                   laExpresion As LambdaExpression,
+                   elTipoDeLaPropiedad As Type,
                    elTipoDeLaClase As Type)
         Me.elMiembro = elMiembro
-        Me.laFuncionDeLaPropiedad = laFuncionDeLaPropiedad
+        Me.laFuncionDeLaPropiedad = laFuncion
         Me.laExpresion = laExpresion
         Me.elTipoDeLaPropiedad = elTipoDeLaPropiedad
         Me.elTipoDeLaClase = elTipoDeLaClase
@@ -54,13 +56,14 @@ Public Class ReglaParaUnaPropiedad
         End Get
     End Property
 
-    Public Shared Function Cree(Of T, TPropiedad)(laExpresion As Expression(Of Func(Of T, TPropiedad))) _
-        As ReglaParaUnaPropiedad
+    Public Shared Function Cree(Of T, TPropiedad) _
+        (laExpresion As Expression(Of Func(Of T, TPropiedad))) _
+        As ReglaDePropiedad
 
         Dim elMiembroDeLaPropiedad = laExpresion.GetMember()
         Dim laExpresionCompilada = laExpresion.Compile()
 
-        Return New ReglaParaUnaPropiedad(elMiembroDeLaPropiedad,
+        Return New ReglaDePropiedad(elMiembroDeLaPropiedad,
                                          laExpresionCompilada.TransformadaANoGenerica,
                                          laExpresion,
                                          GetType(TPropiedad),

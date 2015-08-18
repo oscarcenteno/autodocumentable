@@ -1,6 +1,6 @@
 ﻿Imports System.Reflection
 
-Class ValidadorDeEsIgualOMayorQue
+Class ValidadorDeEsMenorOIgualQue
     Inherits ValidadorDePropiedad
 
     Private valorPorComparar As IComparable
@@ -11,7 +11,6 @@ Class ValidadorDeEsIgualOMayorQue
         Me.valorPorComparar = valorPorComparar
     End Sub
 
-    ' TODO: Revisar si es necesario el comparer como 3er parametro
     Public Sub New(laFuncionDelValorParaComparar As Func(Of Object, Object),
                    elMiembroParaComparar As MemberInfo)
         Me.laFuncionDelValorParaComparar = laFuncionDelValorParaComparar
@@ -28,7 +27,7 @@ Class ValidadorDeEsIgualOMayorQue
 
             Dim resultadoDeComparar As Integer
             resultadoDeComparar = Comparador.GetComparisonResult(contexto.ValorDeLaPropiedad, valorPorComparar)
-            esMayorQue = resultadoDeComparar >= 0
+            esMayorQue = resultadoDeComparar <= 0
         End If
 
         Return esMayorQue
@@ -44,10 +43,10 @@ Class ValidadorDeEsIgualOMayorQue
     End Function
 
 
-    Public Overloads Overrides ReadOnly Property Descripcion(laRegla As ReglaParaUnaPropiedad) As String
+    Public Overloads Overrides ReadOnly Property Descripcion(laRegla As ReglaDePropiedad) As String
         Get
             Dim laPlantilla As String
-            laPlantilla = "'{0}' debe ser igual o mayor que {1}."
+            laPlantilla = "'{0}' debe ser igual o menor que {1}."
 
             Dim laDescripcion As String
 

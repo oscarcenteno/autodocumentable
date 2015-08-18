@@ -16,7 +16,7 @@ Class ValidadorDeEsHexagecimal
     End Function
 
 
-    Public Overrides ReadOnly Property Descripcion(laRegla As ReglaParaUnaPropiedad) As String
+    Public Overrides ReadOnly Property Descripcion(laRegla As ReglaDePropiedad) As String
         Get
             Dim laPlantilla As String
             laPlantilla = "'{0}' debe ser un valor hexagecimal."

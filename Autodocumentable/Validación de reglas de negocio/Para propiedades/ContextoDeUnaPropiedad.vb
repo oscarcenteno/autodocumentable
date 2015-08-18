@@ -6,12 +6,13 @@ Imports System.Reflection
 Public Class ContextoDeUnaPropiedad
 
     Public Property Instancia As Object
-    Public Property ReglaDeLaPropiedad As ReglaParaUnaPropiedad
+    Public Property ReglaDeLaPropiedad As ReglaDePropiedad
     Private elContenedorDelValorDeLaPropiedad As Lazy(Of Object)
-    Public Sub New(instancia As Object, reglaDeLaPropiedad As ReglaParaUnaPropiedad)
+    Public Sub New(instancia As Object, reglaDeLaPropiedad As ReglaDePropiedad)
         Me.Instancia = instancia
         Me.ReglaDeLaPropiedad = reglaDeLaPropiedad
-        Me.elContenedorDelValorDeLaPropiedad = New Lazy(Of Object)(Function() reglaDeLaPropiedad.FunctionDeLaPropiedad(instancia))
+        Me.elContenedorDelValorDeLaPropiedad = New Lazy(Of Object) _
+            (Function() reglaDeLaPropiedad.FunctionDeLaPropiedad(instancia))
     End Sub
 
     Public ReadOnly Property ValorDeLaPropiedad As Object

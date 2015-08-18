@@ -4,13 +4,14 @@ Public MustInherit Class EspecificacionDeValidaciones(Of T)
 
     Private lasReglas As New List(Of ReglaDeValidacion)
 
-    Protected Function LaPropiedad(Of TProperty)(expresion As Expression(Of Func(Of T, TProperty))) _
+    Protected Function LaPropiedad(Of TProperty) _
+        (expresion As Expression(Of Func(Of T, TProperty))) _
         As ConfiguradorDeReglas(Of T, TProperty)
 
         expresion.Guarda("La expresión de la propiedad no puede ser nula.")
 
-        Dim regla As ReglaParaUnaPropiedad
-        regla = ReglaParaUnaPropiedad.Cree(expresion)
+        Dim regla As ReglaDePropiedad
+        regla = ReglaDePropiedad.Cree(expresion)
         lasReglas.Add(regla)
 
         Dim configurador As New ConfiguradorDeReglas(Of T, TProperty)(regla)

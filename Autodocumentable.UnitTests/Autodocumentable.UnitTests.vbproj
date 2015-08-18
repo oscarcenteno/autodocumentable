@@ -80,7 +80,13 @@
     <Import Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfiguradorDeReglas\AgregarValidador_Tests.vb" />
+    <Compile Include="Especificacion de validaciones\Valide_Tests.vb" />
+    <Compile Include="Especificacion de validaciones\Objetos de pruebas\InstrumentoAsociado.vb" />
+    <Compile Include="Especificacion de validaciones\Objetos de pruebas\Perfil.vb" />
+    <Compile Include="Especificacion de validaciones\Objetos de pruebas\Periodicidades.vb" />
+    <Compile Include="Especificacion de validaciones\Objetos de pruebas\RangoDePlazos.vb" />
+    <Compile Include="Especificacion de validaciones\Objetos de pruebas\Solicitud.vb" />
+    <Compile Include="Especificacion de validaciones\Objetos de pruebas\Validador.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
