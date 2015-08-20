@@ -33,7 +33,9 @@ Class ValidadorDeIniciaCon
         Get
             Dim laPlantilla As String
             laPlantilla = "'{0}' debe iniciar con este texto '{1}'."
-            Return String.Format(laPlantilla, laRegla.NombreDeLaPropiedad, Me.textoConQueDebeIniciar)
+            Return String.Format(laPlantilla,
+                                 laRegla.NombreDeLaPropiedad,
+                                 textoConQueDebeIniciar)
         End Get
     End Property
 End Class

@@ -1,41 +1,47 @@
-﻿Public Class Validador
+﻿Imports Autodocumentable.UnitTests
+
+Public Class Validador
     Inherits EspecificacionDeValidaciones(Of Solicitud)
 
     Private elInstrumento As InstrumentoAsociado
-    Private rangosDeOtrasCondiciones As IList(Of RangoDePlazos)
-    Private perfilesDelUsuario As Perfil
+    Private losRangosDeOtrasCondiciones As IList(Of RangoDePlazos)
+    Private losPerfilesDelUsuario As Perfil
 
     Public Sub New(elInstrumento As InstrumentoAsociado,
-                       rangosDeOtrasCondiciones As IList(Of RangoDePlazos),
-                       perfilesDelUsuario As Perfil)
+                   losRangosDeOtrasCondiciones As IList(Of RangoDePlazos),
+                   losPerfilesDelUsuario As Perfil)
 
         Me.elInstrumento = elInstrumento
-        Me.rangosDeOtrasCondiciones = rangosDeOtrasCondiciones
+        Me.losRangosDeOtrasCondiciones = losRangosDeOtrasCondiciones
 
         EspecifiqueLasReglasDeValidacion()
         EspecifiqueLasReglasDePropiedades()
     End Sub
 
     Private Sub EspecifiqueLasReglasDePropiedades()
-        LaPropiedad(Function(laSolicitud) laSolicitud.Nemotecnico).EsAlfanumerica()
-        LaPropiedad(Function(laSolicitud) laSolicitud.Nemotecnico).MideEntre(4, 10)
+        LaPropiedad(Function(laSolicitud) laSolicitud.Nemotecnico).
+            EsAlfanumerica().
+            MideEntre(4, 10)
+
         LaPropiedad(Function(laSolicitud) laSolicitud.TasaBruta).
             EsMayorOIgualQue(0).
             EsMenorOIgualQue(1)
-        LaPropiedad(Function(laSolicitud) laSolicitud.MultiplosDelMonto) _
-            .EsMayorOIgualQue(0.01)
+
+        LaPropiedad(Function(laSolicitud) laSolicitud.MultiplosDelMonto).
+            EsMayorOIgualQue(0.01)
 
         Dim losValoresPermitidos As String()
         losValoresPermitidos = {"1234", "4564", "7894"}
 
-        LaPropiedad(Function(laSolicitud) laSolicitud.ValorEnTexto) _
-            .ExisteEnLaColeccion(losValoresPermitidos)
-
+        LaPropiedad(Function(laSolicitud) laSolicitud.ValorEnTexto).
+            ExisteEnLaColeccion(losValoresPermitidos)
     End Sub
 
     Private Sub EspecifiqueLasReglasDeValidacion()
-        SeCumpleQue(Function(laSolicitud) LaPeriodicidadDebeSerValida(laSolicitud)) _
-                .ConLaDescripcion("La periodicidad debe ser acorde al instrumento.")
+        SeCumpleQue(Function(laSolicitud) LaPeriodicidadDebeSerValida(laSolicitud)).
+            ConLaDescripcion("La periodicidad debe ser acorde al instrumento.")
+        SeCumpleQue(Function(laSolicitud) LosPlazosSonValidos(laSolicitud)).
+            ConLaDescripcion("Los plazos deben ser únicos para las condiciones del instrumento.")
     End Sub
 
     Public Function LaPeriodicidadDebeSerValida(laSolicitud As Solicitud) As Boolean
@@ -45,5 +51,25 @@
         Return esValida
     End Function
 
+    Public Function LosPlazosSonValidos(laSolicitud As Solicitud) As Boolean
+        Dim sonValidos As Boolean
+        sonValidos = True
+
+        For Each otroRango In losRangosDeOtrasCondiciones
+            If LosPlazosSeTraslapan(laSolicitud.Plazos, otroRango) Then
+                sonValidos = False
+            End If
+        Next
+
+        Return sonValidos
+    End Function
+
+    Private Function LosPlazosSeTraslapan(unRango As RangoDePlazos, otroRango As RangoDePlazos) As Boolean
+        Dim seTraslapan As Boolean
+        seTraslapan = Not (unRango.Final < otroRango.Inicial Or
+            otroRango.Final < unRango.Inicial)
+
+        Return seTraslapan
+    End Function
 End Class
 

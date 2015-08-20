@@ -3,7 +3,7 @@ Public NotInheritable Class Comparador
     Private Sub New()
     End Sub
 
-    ' TODO: Cambiar retorno por un objeto
+    ' TODO: Cambiar retorno por un objeto no con ByRef
     Public Shared Function IntenteComparar(elValor As IComparable,
                                            valorParaComparar As IComparable,
                                            ByRef elResultadoDeSalida As Integer) As Boolean
@@ -21,7 +21,6 @@ Public NotInheritable Class Comparador
         Return sePudoComparar
     End Function
 
-    ' TODO: Traducir el resto a español. Tomado de FluentValidation en github
     Private Shared Sub Compare(value As IComparable,
                                valueToCompare As IComparable,
                                ByRef result As Integer)

@@ -1,6 +1,4 @@
-﻿Imports Autodocumentable
-
-Namespace CondicionesFinancieras.Agregar
+﻿Namespace CondicionesFinancieras.Agregar
 
     <TestClass()> Public Class Valide_Tests
         Dim resultadoEsperado As Boolean
@@ -19,23 +17,27 @@ Namespace CondicionesFinancieras.Agregar
         End Sub
 
         Private Sub InicialiceElContextoDelValidador()
-            elInstrumento.Periodicidades = Periodicidades.AlVencimiento Or Periodicidades.Semestral
-            losRangosDeOtrasCondiciones.Add(New RangoDePlazos With {.PlazoInicial = 1, .PlazoFinal = 5})
-            losRangosDeOtrasCondiciones.Add(New RangoDePlazos With {.PlazoInicial = 10, .PlazoFinal = 13})
+            elInstrumento.Periodicidades = Periodicidades.AlVencimiento
+
+            Dim unRango As RangoDePlazos
+            unRango = New RangoDePlazos With {.Inicial = 1, .Final = 5}
+            losRangosDeOtrasCondiciones.Add(unRango)
+            unRango = New RangoDePlazos With {.Inicial = 10, .Final = 13}
+            losRangosDeOtrasCondiciones.Add(unRango)
             losPerfilesDelUsuario = Perfil.DigitadorDeCondicionesFinancieras
         End Sub
 
         Private Sub InicialiceElValidador()
-            elValidador = New Validador(elInstrumento,
-                                        losRangosDeOtrasCondiciones,
+            elValidador = New Validador(elInstrumento, losRangosDeOtrasCondiciones,
                                         losPerfilesDelUsuario)
         End Sub
 
         Private Sub InicialiceLaSolicitudBasica()
             laSolicitud = New Solicitud
             laSolicitud.Periodicidades = Periodicidades.AlVencimiento
-            laSolicitud.Plazos = New RangoDePlazos With {.PlazoInicial = 6, .PlazoFinal = 9}
-            laSolicitud.Nemotecnico = "1234"
+            laSolicitud.Plazos = New RangoDePlazos With {.Inicial = 6, .Final = 9}
+            laSolicitud.Nemotecnico = "DEP7000"
+            laSolicitud.ValorEnTexto = "1234"
             laSolicitud.MultiplosDelMonto = 50
         End Sub
 
@@ -51,7 +53,7 @@ Namespace CondicionesFinancieras.Agregar
         <TestMethod()> Public Sub Valide_ElRangoEsInvalido_NoEsValidaConErrores()
             resultadoEsperado = False
 
-            laSolicitud.Plazos = New RangoDePlazos With {.PlazoInicial = 1, .PlazoFinal = 10}
+            laSolicitud.Plazos = New RangoDePlazos With {.Inicial = 1, .Final = 10}
             resultadoDeLaValidacion = elValidador.Valide(laSolicitud)
             resultadoObtenido = resultadoDeLaValidacion.EsValida
 

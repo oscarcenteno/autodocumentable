@@ -26,7 +26,7 @@ Class ValidadorDeEsAlfanumerica
     Public Overrides ReadOnly Property Descripcion(laRegla As ReglaDePropiedad) As String
         Get
             Dim laPlantilla As String
-            laPlantilla = "{0} debe contener dígitos y letras solamente."
+            laPlantilla = "'{0}' debe contener dígitos y letras solamente."
             Return String.Format(laPlantilla, laRegla.NombreDeLaPropiedad)
         End Get
     End Property

@@ -1,6 +1,4 @@
-﻿Imports Autodocumentable
-
-Friend Class ValidadorDeExisteEnLaColeccion
+﻿Friend Class ValidadorDeExisteEnLaColeccion
     Inherits ValidadorDePropiedad
 
     Dim losValoresPermitidos As IEnumerable(Of Object)

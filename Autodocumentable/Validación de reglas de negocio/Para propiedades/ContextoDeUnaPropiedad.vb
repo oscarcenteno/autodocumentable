@@ -1,9 +1,4 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Reflection
-
-Public Class ContextoDeUnaPropiedad
+﻿Public Class ContextoDeUnaPropiedad
 
     Public Property Instancia As Object
     Public Property ReglaDeLaPropiedad As ReglaDePropiedad

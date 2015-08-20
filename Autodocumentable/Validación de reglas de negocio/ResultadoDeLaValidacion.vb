@@ -1,7 +1,6 @@
 ﻿Public Class ResultadoDeLaValidacion
     Implements IEquatable(Of ResultadoDeLaValidacion)
 
-
     Private errores As New List(Of String)
 
     Friend Sub AgregarErrores(mensajesDeError As IEnumerable(Of String))

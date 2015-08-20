@@ -1,5 +1,4 @@
-﻿
-Class ValidadorDeMideEntre
+﻿Class ValidadorDeMideEntre
     Inherits ValidadorDePropiedad
 
     Private tamanoMinimo As Integer
@@ -38,8 +37,8 @@ Class ValidadorDeMideEntre
             laPlantilla = "'{0}' debe tener un tamaño entre {1} y {2} caracteres, inclusive."
             Return String.Format(laPlantilla,
                                  laRegla.NombreDeLaPropiedad,
-                                 Me.tamanoMinimo,
-                                 Me.tamanoMaximo)
+                                 tamanoMinimo,
+                                 tamanoMaximo)
         End Get
     End Property
 End Class

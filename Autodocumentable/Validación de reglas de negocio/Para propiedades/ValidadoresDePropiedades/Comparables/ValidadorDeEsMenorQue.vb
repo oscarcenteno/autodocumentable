@@ -40,7 +40,7 @@ Class ValidadorDeEsMenorQue
     Private Function ObtengaValorParaComparar(contexto As ContextoDeUnaPropiedad) _
         As Object
 
-        If Me.laFuncionDelValorParaComparar IsNot Nothing Then
+        If laFuncionDelValorParaComparar IsNot Nothing Then
             Return laFuncionDelValorParaComparar(contexto.Instancia)
         End If
 

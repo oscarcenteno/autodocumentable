@@ -33,7 +33,7 @@ Class ValidadorDeTieneUnTamanoDe
         Get
             Dim laPlantilla As String
             laPlantilla = "'{0}' debe tener un tamaño de exactamente {1} caracteres."
-            Return String.Format(laPlantilla, laRegla.NombreDeLaPropiedad, Me.tamanoExacto)
+            Return String.Format(laPlantilla, laRegla.NombreDeLaPropiedad, tamanoExacto)
         End Get
     End Property
 End Class

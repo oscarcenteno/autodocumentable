@@ -1,5 +1,5 @@
 ﻿Public Class RangoDePlazos
-    Public Property PlazoInicial As Integer
-    Public Property PlazoFinal As Integer
+    Public Property Inicial As Integer
+    Public Property Final As Integer
 End Class
 
