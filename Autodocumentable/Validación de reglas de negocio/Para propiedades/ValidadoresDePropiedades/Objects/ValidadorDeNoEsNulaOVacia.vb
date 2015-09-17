@@ -33,7 +33,7 @@
         End If
 
         Dim esUnaColeccionYEsVacia As Boolean
-        esUnaColeccionYEsVacia = esUnaColeccion And laColeccionTieneElementos
+        esUnaColeccionYEsVacia = esUnaColeccion And Not laColeccionTieneElementos
 
         Return esUnaColeccionYEsVacia
     End Function

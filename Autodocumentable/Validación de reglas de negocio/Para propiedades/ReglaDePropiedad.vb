@@ -37,7 +37,7 @@ Public Class ReglaDePropiedad
             elNombre = elMiembro.Name
 
             Dim elNombreEnPascalCase As String
-            elNombreEnPascalCase = elNombre.SplitPascalCase()
+            elNombreEnPascalCase = elNombre.SepareComoPascalCase()
 
             Return elNombreEnPascalCase
         End Get
@@ -73,12 +73,19 @@ Public Class ReglaDePropiedad
 
     Function Valide(laInstancia As Object) As IEnumerable(Of String) _
         Implements ReglaDeValidacion.Valide
-        Dim elContexto As New ContextoDeUnaPropiedad(laInstancia, Me)
+        Dim mensajesDeError As IEnumerable(Of String)
 
+        Dim elContexto As New ContextoDeUnaPropiedad(laInstancia, Me)
+        mensajesDeError = ObtengaMensajesDeError(elContexto)
+
+        Return mensajesDeError
+    End Function
+
+    Private Function ObtengaMensajesDeError(elContexto As ContextoDeUnaPropiedad) As IEnumerable(Of String)
         Dim mensajesDeError As New List(Of String)
+
         For Each unValidador In losValidadores
-            Dim mensajeDeError As String
-            mensajeDeError = unValidador.Valide(elContexto)
+            Dim mensajeDeError As String = unValidador.Valide(elContexto)
             If Not String.IsNullOrEmpty(mensajeDeError) Then
                 mensajesDeError.Add(mensajeDeError)
             End If

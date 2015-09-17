@@ -65,7 +65,9 @@
     <Compile Include="Actores y casos de uso\ConsultaSobreUnPermiso.vb" />
     <Compile Include="Actores y casos de uso\PermisoFluido.vb" />
     <Compile Include="Diagramas de estados\TransicionFluida.vb" />
-    <Compile Include="Extensiones.vb" />
+    <Compile Include="ExtensionesAObject.vb" />
+    <Compile Include="ExtensionesDeReflection.vb" />
+    <Compile Include="ExtensionesAString.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

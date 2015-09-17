@@ -9,38 +9,37 @@
 
     Public Function A(losPerfiles As Perfil) As Boolean
 
-        Dim sePermite As Boolean = False
-        Dim permisoEncontrado As Permiso
-        permisoEncontrado = EncuentreUnaAccionParaLosPerfiles(LaAccion, losPerfiles)
+        Dim laAccionSePermite As Boolean = False
+        Dim elPermisoEncontrado As Permiso
+        elPermisoEncontrado = EncuentreUnaAccionParaLosPerfiles(LaAccion, losPerfiles)
 
-        If permisoEncontrado IsNot Nothing Then
-            sePermite = True
+        If elPermisoEncontrado IsNot Nothing Then
+            laAccionSePermite = True
         End If
 
-        Return sePermite
-
+        Return laAccionSePermite
     End Function
 
     Private Function EncuentreUnaAccionParaLosPerfiles(laAccion As Accion,
                                                        losPerfiles As Perfil) As Permiso
-        Dim permisoEncontrado As Permiso = Nothing
+        Dim elPermisoEncontrado As Permiso = Nothing
 
-        Dim perfilesComoObjeto As Object = losPerfiles
-        Dim accionComoObjeto As Object = laAccion
-        Dim perfilesComoInteger = Integer.Parse(perfilesComoObjeto)
-        Dim accionComoInteger = Integer.Parse(accionComoObjeto)
+        Dim losPerfilesComoObjeto As Object = losPerfiles
+        Dim laAccionComoObjeto As Object = laAccion
+        Dim losPerfilesComoInteger = Integer.Parse(losPerfilesComoObjeto)
+        Dim laAccionComoInteger = Integer.Parse(laAccionComoObjeto)
 
         Dim losPermisos As IEnumerable(Of Permiso)
         losPermisos = laEspecificacion.LosPermisos
 
-        For Each p In losPermisos
-            If (p.PuedeRealizacionLaAccion = accionComoInteger) _
-                And (p.UnActorConPerfil And perfilesComoInteger) Then
-                permisoEncontrado = p
+        For Each unPermiso In losPermisos
+            If (unPermiso.PuedeRealizacionLaAccion = laAccionComoInteger) _
+                And (unPermiso.UnActorConPerfil And losPerfilesComoInteger) Then
+                elPermisoEncontrado = unPermiso
             End If
         Next
 
-        Return permisoEncontrado
+        Return elPermisoEncontrado
     End Function
 
 End Class

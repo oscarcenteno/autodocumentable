@@ -3,12 +3,12 @@
 Class ValidadorDeEsMayorQue
     Inherits ValidadorDePropiedad
 
-    Private valorPorComparar As IComparable
+    Private elValorPorComparar As IComparable
     Dim laFuncionDelValorParaComparar As Func(Of Object, Object)
     Dim elMiembroParaComparar As MemberInfo
 
-    Sub New(valorPorComparar As IComparable)
-        Me.valorPorComparar = valorPorComparar
+    Sub New(elValorPorComparar As IComparable)
+        Me.elValorPorComparar = elValorPorComparar
     End Sub
 
     Public Sub New(laFuncionDelValorParaComparar As Func(Of Object, Object),
@@ -17,18 +17,22 @@ Class ValidadorDeEsMayorQue
         Me.elMiembroParaComparar = elMiembroParaComparar
     End Sub
 
-    Public Overrides Function EsValida(contexto As ContextoDeUnaPropiedad) As Boolean
+    Public Overrides Function EsValida(elContexto As ContextoDeUnaPropiedad) As Boolean
         Dim esMayorQue As Boolean
-        If contexto.ValorDeLaPropiedad Is Nothing Then
+
+        If elContexto.ValorDeLaPropiedad Is Nothing Then
             esMayorQue = False
         Else
-            Dim valorPorComparar As Object
-            valorPorComparar = ObtengaValorParaComparar(contexto)
+            Dim elValorPorComparar As Object = ObtengaValorParaComparar(elContexto)
 
-            Dim resultadoDeComparar As Integer
-            resultadoDeComparar = Comparador.GetComparisonResult(contexto.ValorDeLaPropiedad,
-                                                                 valorPorComparar)
-            esMayorQue = resultadoDeComparar > 0
+            Dim elResultadoDeComparar As Integer
+            elResultadoDeComparar = Comparador.GetComparisonResult(elContexto.ValorDeLaPropiedad,
+                                                                 elValorPorComparar)
+            If elResultadoDeComparar > 0 Then
+                esMayorQue = True
+            Else
+                esMayorQue = False
+            End If
         End If
 
         Return esMayorQue
@@ -40,7 +44,7 @@ Class ValidadorDeEsMayorQue
             Return laFuncionDelValorParaComparar(contexto.Instancia)
         End If
 
-        Return Me.valorPorComparar
+        Return Me.elValorPorComparar
     End Function
 
 
@@ -52,12 +56,12 @@ Class ValidadorDeEsMayorQue
             Dim laDescripcion As String
 
             If Me.elMiembroParaComparar Is Nothing Then
-                laDescripcion = String.Format(laPlantilla, laRegla.NombreDeLaPropiedad, Me.valorPorComparar)
+                laDescripcion = String.Format(laPlantilla, laRegla.NombreDeLaPropiedad, Me.elValorPorComparar)
             Else
                 Dim elNombre As String
                 elNombre = Me.elMiembroParaComparar.Name
                 Dim elNombreEnSentenceCase As String
-                elNombreEnSentenceCase = elNombre.SplitPascalCase()
+                elNombreEnSentenceCase = elNombre.SepareComoPascalCase()
                 laDescripcion = String.Format(laPlantilla, laRegla.NombreDeLaPropiedad, elNombreEnSentenceCase)
             End If
 

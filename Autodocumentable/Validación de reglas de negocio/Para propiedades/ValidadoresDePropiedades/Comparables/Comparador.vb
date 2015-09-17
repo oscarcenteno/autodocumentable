@@ -38,10 +38,6 @@
         End Try
     End Sub
 
-    ''' <summary>
-    ''' Tries to compare the two objects, but will throw an exception if it fails.
-    ''' </summary>
-    ''' <returns>True on success, otherwise False.</returns>
     Public Shared Function GetComparisonResult(value As IComparable, valueToCompare As IComparable) As Integer
         Dim result As Integer
         If IntenteComparar(value, valueToCompare, result) Then

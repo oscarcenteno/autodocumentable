@@ -25,24 +25,31 @@ Public Class ReglaParaUnaExpresion
         elNombre = elMiembro.Name
 
         Dim elNombreEnPascalCase As String
-        elNombreEnPascalCase = elNombre.SplitSentenceCase()
+        elNombreEnPascalCase = elNombre.SepareComoUnaOracion()
 
         Return elNombreEnPascalCase
     End Function
 
     Shared Function Cree(Of T)(laExpresion As Expression(Of Func(Of T, Boolean))) _
         As ReglaParaUnaExpresion
+
         Dim laExpresionCompilada As Func(Of T, Boolean)
         laExpresionCompilada = laExpresion.Compile()
+
         Dim elTipo As Type
         elTipo = GetType(T)
+
         Dim elMetodo As MemberInfo
         elMetodo = laExpresion.ObtengaElMetodo()
 
+        Dim laExpresionNoGenerica As Func(Of Object, Object)
+        laExpresionNoGenerica = laExpresionCompilada.TransformadaANoGenerica()
+
         Dim laRegla As New ReglaParaUnaExpresion(elMetodo,
-                                                 laExpresionCompilada.TransformadaANoGenerica,
+                                                 laExpresionNoGenerica,
                                                  laExpresion,
                                                  elTipo)
+
         Return laRegla
     End Function
 
@@ -51,17 +58,20 @@ Public Class ReglaParaUnaExpresion
         Get
             Dim lasDescripciones As New List(Of String)
             lasDescripciones.Add(Me.laDescripcion)
+
             Return lasDescripciones
         End Get
     End Property
 
     Public Function Valide(laInstancia As Object) As IEnumerable(Of String) _
         Implements ReglaDeValidacion.Valide
+        Dim seCumple As Boolean = LaExpresionSeCumple(laInstancia)
+        Dim elResultado As List(Of String) = RegistreSiNoSeCumple(seCumple)
 
-        Dim elMetodo = New Lazy(Of Object)(Function() Me.laFuncion(laInstancia))
-        Dim laExpresionSeCumple As Boolean
-        laExpresionSeCumple = elMetodo.Value
+        Return elResultado
+    End Function
 
+    Private Function RegistreSiNoSeCumple(laExpresionSeCumple As Boolean) As List(Of String)
         Dim elResultado As New List(Of String)
         If Not laExpresionSeCumple Then
             elResultado.Add(laDescripcion)
@@ -70,6 +80,12 @@ Public Class ReglaParaUnaExpresion
         Return elResultado
     End Function
 
+    Private Function LaExpresionSeCumple(laInstancia As Object) As Boolean
+        Dim elMetodo = New Lazy(Of Object)(Function() Me.laFuncion(laInstancia))
+        Dim seCumple As Boolean = elMetodo.Value
+
+        Return seCumple
+    End Function
 
     Public Sub ConLaDescripcion(laDescripcion As String)
         Me.laDescripcion = laDescripcion

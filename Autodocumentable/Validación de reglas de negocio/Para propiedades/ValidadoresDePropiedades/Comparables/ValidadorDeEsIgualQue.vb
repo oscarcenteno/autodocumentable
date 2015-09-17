@@ -56,7 +56,7 @@ Class ValidadorDeEsIgualQue
                 Dim elNombre As String
                 elNombre = Me.elMiembroParaComparar.Name
                 Dim elNombreEnSentenceCase As String
-                elNombreEnSentenceCase = elNombre.SplitPascalCase()
+                elNombreEnSentenceCase = elNombre.SepareComoPascalCase()
                 laDescripcion = String.Format(laPlantilla, laRegla.NombreDeLaPropiedad, elNombreEnSentenceCase)
             End If
 

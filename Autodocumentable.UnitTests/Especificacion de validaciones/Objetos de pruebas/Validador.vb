@@ -1,6 +1,4 @@
-﻿Imports Autodocumentable.UnitTests
-
-Public Class Validador
+﻿Public Class Validador
     Inherits EspecificacionDeValidaciones(Of Solicitud)
 
     Private elInstrumento As InstrumentoAsociado
@@ -49,24 +47,30 @@ Public Class Validador
     End Function
 
     Public Function LosPlazosNoSeDebenRepetirDentroDelInstrumento(laSolicitud As Solicitud) As Boolean
-        Dim sonValidos As Boolean
-        sonValidos = True
 
-        For Each otroRango In losRangosDeOtrasCondiciones
-            If LosPlazosSeTraslapan(laSolicitud.Plazos, otroRango) Then
-                sonValidos = False
-            End If
-        Next
+        Dim elPlazo As RangoDePlazos
+        elPlazo = laSolicitud.Plazos
+
+        Dim sonValidos As Boolean
+        If AlgunoSeTraslapaCon(elPlazo) Then
+            sonValidos = False
+        Else
+            sonValidos = True
+        End If
 
         Return sonValidos
     End Function
 
-    Private Function LosPlazosSeTraslapan(unRango As RangoDePlazos, otroRango As RangoDePlazos) As Boolean
-        Dim seTraslapan As Boolean
-        seTraslapan = Not (unRango.Final < otroRango.Inicial Or
-            otroRango.Final < unRango.Inicial)
+    Private Function AlgunoSeTraslapaCon(elPlazo As RangoDePlazos) As Boolean
+        Dim unoSeTraslapa As Boolean
 
-        Return seTraslapan
+        For Each otroRango In losRangosDeOtrasCondiciones
+            If elPlazo.SeTraslapaCon(otroRango) Then
+                unoSeTraslapa = True
+            End If
+        Next
+
+        Return unoSeTraslapa
     End Function
 End Class
 
