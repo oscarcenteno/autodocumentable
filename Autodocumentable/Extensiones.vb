@@ -20,7 +20,7 @@ Public Module Extensiones
     End Sub
 
     <Extension>
-    Function GetMember(laExpresion As LambdaExpression) As MemberInfo
+    Function ObtengaElMiembro(laExpresion As LambdaExpression) As MemberInfo
         Dim memberExp = RemoveUnary(laExpresion.Body)
 
         If memberExp Is Nothing Then
@@ -28,6 +28,21 @@ Public Module Extensiones
         End If
 
         Return memberExp.Member
+    End Function
+
+    <Extension>
+    Function ObtengaElMetodo(laExpresion As LambdaExpression) As MemberInfo
+        Dim elMetodo As MemberInfo
+
+        If (TypeOf laExpresion.Body Is MethodCallExpression) Then
+            Dim expresionDeMetodo As MethodCallExpression
+            expresionDeMetodo = laExpresion.Body
+            elMetodo = expresionDeMetodo.Method
+        Else
+            Throw New ArgumentException("La validacion debe ser un llamado a un método de instancia.")
+        End If
+
+        Return elMetodo
     End Function
 
     Function RemoveUnary(toUnwrap As Expression) As MemberExpression
@@ -40,13 +55,13 @@ Public Module Extensiones
     End Function
 
     <Extension>
-    Public Function TransformadaANoGenerica(Of T, TProperty)(func As Func(Of T, TProperty)) As Func(Of Object, Object)
+    Function TransformadaANoGenerica(Of T, TProperty)(func As Func(Of T, TProperty)) As Func(Of Object, Object)
         Return Function(x) func(DirectCast(x, T))
     End Function
 
 
     <Extension>
-    Public Function SplitPascalCase(input As String) As String
+    Function SplitPascalCase(input As String) As String
 
         If (String.IsNullOrEmpty(input)) Then
             Return String.Empty
@@ -59,7 +74,7 @@ Public Module Extensiones
 
 
     <Extension>
-    Public Function SplitSentenceCase(input As String) As String
+    Function SplitSentenceCase(input As String) As String
 
         If (String.IsNullOrEmpty(input)) Then
             Return String.Empty

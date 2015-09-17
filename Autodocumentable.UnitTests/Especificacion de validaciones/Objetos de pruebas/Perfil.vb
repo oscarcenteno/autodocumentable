@@ -1,5 +1,4 @@
-﻿
-<Flags>
+﻿<Flags>
 Public Enum Perfil
 
     DigitadorDeCondicionesFinancieras = 1

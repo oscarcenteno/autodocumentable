@@ -1,5 +1,4 @@
-﻿Imports System.Linq
-Imports System.Linq.Expressions
+﻿Imports System.Linq.Expressions
 Imports System.Reflection
 
 Public Class ReglaDePropiedad
@@ -60,8 +59,10 @@ Public Class ReglaDePropiedad
         (laExpresion As Expression(Of Func(Of T, TPropiedad))) _
         As ReglaDePropiedad
 
-        Dim elMiembroDeLaPropiedad = laExpresion.GetMember()
-        Dim laExpresionCompilada = laExpresion.Compile()
+        Dim elMiembroDeLaPropiedad As MemberInfo
+        elMiembroDeLaPropiedad = laExpresion.ObtengaElMiembro()
+        Dim laExpresionCompilada As Func(Of T, TPropiedad)
+        laExpresionCompilada = laExpresion.Compile()
 
         Return New ReglaDePropiedad(elMiembroDeLaPropiedad,
                                          laExpresionCompilada.TransformadaANoGenerica,

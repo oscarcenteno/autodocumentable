@@ -120,7 +120,7 @@ Public Module ExtensionesDeValidacionDePropiedades
         Dim laFuncion = expression.Compile()
         Dim laFuncionNoGenerica = laFuncion.TransformadaANoGenerica
         Dim elMiembro As MemberInfo
-        elMiembro = expression.GetMember()
+        elMiembro = expression.ObtengaElMiembro()
         Dim elValidador As New ValidadorDeEsMayorQue(laFuncionNoGenerica, elMiembro)
 
         elConfigurador.AgregarValidador(elValidador)
@@ -153,7 +153,7 @@ Public Module ExtensionesDeValidacionDePropiedades
         Dim laFuncion = expression.Compile()
         Dim elValidador As ValidadorDeEsMenorQue
         elValidador = New ValidadorDeEsMenorQue(laFuncion.TransformadaANoGenerica(),
-                                                expression.GetMember())
+                                                expression.ObtengaElMiembro())
         elConfigurador.AgregarValidador(elValidador)
         Return elConfigurador
     End Function
@@ -181,7 +181,7 @@ Public Module ExtensionesDeValidacionDePropiedades
         Dim laFuncion = expression.Compile()
         Dim elValidador
         elValidador = New ValidadorDeEsIgualQue(laFuncion.TransformadaANoGenerica(),
-                                                expression.GetMember())
+                                                expression.ObtengaElMiembro())
         elConfigurador.AgregarValidador(elValidador)
         Return elConfigurador
     End Function
@@ -212,7 +212,7 @@ Public Module ExtensionesDeValidacionDePropiedades
         Dim laFuncion = expression.Compile()
         elConfigurador.AgregarValidador(
             New ValidadorDeEsMayorOIgualQue(laFuncion.TransformadaANoGenerica(),
-                                            expression.GetMember()))
+                                            expression.ObtengaElMiembro()))
         Return elConfigurador
     End Function
 
@@ -240,7 +240,7 @@ Public Module ExtensionesDeValidacionDePropiedades
         Dim laFuncion = expression.Compile()
         Dim laFuncionNoGenerica = laFuncion.TransformadaANoGenerica()
         Dim elMiembro As MemberInfo
-        elMiembro = expression.GetMember()
+        elMiembro = expression.ObtengaElMiembro()
 
         Dim elValidador As New ValidadorDeEsMenorOIgualQue(laFuncionNoGenerica, elMiembro)
         elConfigurador.AgregarValidador(elValidador)

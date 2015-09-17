@@ -46,8 +46,7 @@
             laAccionPorAplicar = EncuentreLaAccionSobreUnEstado(accion, elEstadoActual)
             elEstadoActual = laAccionPorAplicar.EstadoDestino
         Else
-            Dim plantillaDelError As String
-            plantillaDelError = "La acción {0} no se permite sobre el estado {1}"
+            Const plantillaDelError As String = "La acción {0} no se permite sobre el estado {1}"
             Dim elMensajeDeError As String
             elMensajeDeError = String.Format(plantillaDelError,
                                              accion.ToString,

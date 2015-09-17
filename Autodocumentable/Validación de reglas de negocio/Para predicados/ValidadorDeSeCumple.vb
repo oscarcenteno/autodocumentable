@@ -1,5 +1,4 @@
-﻿
-Class ValidadorDeSeCumple
+﻿Class ValidadorDeSeCumple
     Inherits ValidadorDePropiedad
 
     Public Overrides ReadOnly Property Descripcion(laRegla As ReglaDePropiedad) As String

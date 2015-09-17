@@ -122,10 +122,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EspecificacionDeValidaciones\" />
-    <Folder Include="ResultadoDeLaValidacion\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Autodocumentable\Autodocumentable.vbproj">
       <Project>{e2a92c6a-4696-46c3-b22d-f4e270ac3e9b}</Project>

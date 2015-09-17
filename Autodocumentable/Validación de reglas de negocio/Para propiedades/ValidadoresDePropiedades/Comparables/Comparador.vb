@@ -1,5 +1,4 @@
-﻿
-Public NotInheritable Class Comparador
+﻿Public NotInheritable Class Comparador
     Private Sub New()
     End Sub
 

@@ -1,5 +1,4 @@
 ﻿Imports System.Runtime.CompilerServices
-Imports System.Linq.Expressions
 
 Public Module ExtensionesDeValidacionDePredicados
 

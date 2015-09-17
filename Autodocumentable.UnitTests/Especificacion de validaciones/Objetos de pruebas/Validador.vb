@@ -32,26 +32,23 @@ Public Class Validador
 
         Dim losValoresPermitidos As String()
         losValoresPermitidos = {"1234", "4564", "7894"}
-
         LaPropiedad(Function(laSolicitud) laSolicitud.ValorEnTexto).
             ExisteEnLaColeccion(losValoresPermitidos)
     End Sub
 
     Private Sub EspecifiqueLasReglasDeValidacion()
-        SeCumpleQue(Function(laSolicitud) LaPeriodicidadDebeSerValida(laSolicitud)).
-            ConLaDescripcion("La periodicidad debe ser acorde al instrumento.")
-        SeCumpleQue(Function(laSolicitud) LosPlazosSonValidos(laSolicitud)).
-            ConLaDescripcion("Los plazos deben ser únicos para las condiciones del instrumento.")
+        SeCumpleQue(Function(laSolicitud) LaPeriodicidadDebeSerAcordeAlInstrumento(laSolicitud))
+        SeCumpleQue(Function(laSolicitud) LosPlazosNoSeDebenRepetirDentroDelInstrumento(laSolicitud))
     End Sub
 
-    Public Function LaPeriodicidadDebeSerValida(laSolicitud As Solicitud) As Boolean
+    Public Function LaPeriodicidadDebeSerAcordeAlInstrumento(laSolicitud As Solicitud) As Boolean
         Dim esValida As Boolean
         esValida = elInstrumento.Periodicidades.HasFlag(laSolicitud.Periodicidades)
 
         Return esValida
     End Function
 
-    Public Function LosPlazosSonValidos(laSolicitud As Solicitud) As Boolean
+    Public Function LosPlazosNoSeDebenRepetirDentroDelInstrumento(laSolicitud As Solicitud) As Boolean
         Dim sonValidos As Boolean
         sonValidos = True
 
